@@ -1399,7 +1399,7 @@ public class LatinIME extends InputMethodService implements
         // {@link SoftInputWindow#updateWidthHeight(WindowManager.LayoutParams)}.
         final Window window = getWindow().getWindow();
         if (window == null) return;
-        ViewLayoutUtils.updateLayoutHeightOf(window, LayoutParams.MATCH_PARENT);
+        ViewLayoutUtils.updateLayoutHeightOf(window, LayoutParams.WRAP_CONTENT);
         // This method may be called before {@link #setInputView(View)}.
         if (mInputView != null) {
             // In non-fullscreen mode, {@link InputView} and its parent inputArea should expand to
@@ -1408,8 +1408,7 @@ public class LatinIME extends InputMethodService implements
             // coexistent with {@link #mExtractedArea} above.
             // See {@link InputMethodService#setInputView(View) and
             // com.android.internal.R.layout.input_method.xml.
-            final int layoutHeight = isFullscreenMode()
-                    ? LayoutParams.WRAP_CONTENT : LayoutParams.MATCH_PARENT;
+            final int layoutHeight = LayoutParams.WRAP_CONTENT;
             final View inputArea = window.findViewById(android.R.id.inputArea);
             ViewLayoutUtils.updateLayoutHeightOf(inputArea, layoutHeight);
             ViewLayoutUtils.updateLayoutGravityOf(inputArea, Gravity.BOTTOM);
@@ -1975,6 +1974,10 @@ public class LatinIME extends InputMethodService implements
             return;
         mOriginalNavBarColor = window.getNavigationBarColor();
         window.setNavigationBarColor(color);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            window.setBackgroundBlurRadius(50);
+        }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
             return;
