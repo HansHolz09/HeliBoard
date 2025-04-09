@@ -22,8 +22,9 @@ SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
             android:allowBackup="true"
             android:defaultToDeviceProtectedStorage="true"
             android:directBootAware="true"
+            android:enableOnBackInvokedCallback="true"
             tools:remove="android:appComponentFactory"
-            tools:targetApi="p">
+            tools:targetApi="33">
 
         <!-- Services -->
         <service android:name="LatinIME"
