@@ -2,6 +2,7 @@ package helium314.keyboard.latin.settings
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.view.Gravity
 import helium314.keyboard.keyboard.KeyboardActionListener
@@ -39,7 +40,7 @@ object Defaults {
 
     private const val DEFAULT_SIZE_SCALE = 1.0f // 100%
     const val PREF_THEME_STYLE = KeyboardTheme.STYLE_ROUNDED
-    const val PREF_ICON_STYLE = KeyboardTheme.STYLE_ROUNDED
+    fun PREF_ICON_STYLE(prefs: SharedPreferences) = prefs.getString(Settings.PREF_THEME_STYLE, PREF_THEME_STYLE)!!
     const val PREF_THEME_COLORS = KeyboardTheme.THEME_DYNAMIC
     const val PREF_THEME_COLORS_NIGHT = KeyboardTheme.THEME_DYNAMIC
     const val PREF_THEME_KEY_BORDERS = true
@@ -91,7 +92,8 @@ object Defaults {
     @JvmField
     val PREF_KEY_GAP_SCALE = Array(4) { DEFAULT_SIZE_SCALE }
     const val PREF_FONT_SCALE = DEFAULT_SIZE_SCALE
-    const val PREF_EMOJI_FONT_SCALE = 0.8f
+    const val PREF_HINT_FONT_SCALE = DEFAULT_SIZE_SCALE
+    const val PREF_EMOJI_FONT_SCALE = DEFAULT_SIZE_SCALE
     const val PREF_EMOJI_KEY_FIT = true
     const val PREF_EMOJI_SKIN_TONE = ""
     @JvmField
