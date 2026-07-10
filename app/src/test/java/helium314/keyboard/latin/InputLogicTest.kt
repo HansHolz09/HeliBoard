@@ -150,6 +150,13 @@ class InputLogicTest {
         assertEquals("ㅂ갸", text)
     }
 
+    @Test fun emojiHangul() {
+        val ko = SubtypeSettings.getResourceSubtypesForLocale("ko".constructLocale()).first()
+        latinIME.switchToSubtype(ko)
+        input(0x1F970)
+        assertEquals("\uD83E\uDD70", text)
+    }
+
     // todo: make it work, but it might not be that simple because adding is done in combiner
     //  https://github.com/HeliBorg/HeliBoard/issues/214
     @Test fun insertLetterIntoWordHangulFails() {

@@ -165,18 +165,6 @@ public final class Constants {
     }
 
     /**
-     * Custom request code used in
-     * {@link helium314.keyboard.keyboard.KeyboardActionListener#onCustomRequest(int)}.
-     */
-    // The code to show input method picker.
-    public static final int CUSTOM_CODE_SHOW_INPUT_METHOD_PICKER = 1;
-
-    // Codes for touchpad mode
-    public static final int CODE_TOUCHPAD_ON = 1000;
-    public static final int CODE_TOUCHPAD_OFF = 1001;
-    public static final int CODE_PERFORM_HAPTIC = 1002;
-
-    /**
      * Some common keys code. Must be positive.
      */
     public static final int CODE_ENTER = '\n';
@@ -266,10 +254,6 @@ public final class Constants {
     public static final int MAX_IME_DECODER_RESULTS = 20;
     public static final int DECODER_SCORE_SCALAR = 1000000;
     public static final int DECODER_MAX_SCORE = 1000000000;
-
-    public static final int EVENT_BACKSPACE = 1;
-    public static final int EVENT_REJECTION = 2;
-    public static final int EVENT_REVERT = 3;
 
     private Constants() {
         // This utility class is not publicly instantiable.

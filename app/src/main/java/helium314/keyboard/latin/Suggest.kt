@@ -130,9 +130,9 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
 
         // If there is an incoming autocorrection, make sure typed word is shown, so user is able to override it.
         // Otherwise, if the relevant setting is enabled, show the typed word in the middle.
-        val typedWordWasCapitalized = capitalizedTypedWord != wordComposer.typedWord
-        val correctToCapitalizedWord = typedWordWasCapitalized && isCorrectionEnabled
-            && !wordComposer.isCursorFrontOrMiddleOfComposingWord && wordComposer.typedWord.drop(1).none { it.isUpperCase() }
+        val typedWordWasCapitalized = capitalizedTypedWord != typedWordString
+        val correctToCapitalizedWord = typedWordWasCapitalized && isCorrectionEnabled && Settings.getValues().mAutoCorrectCapitalizedSuggestion
+            && !wordComposer.isCursorFrontOrMiddleOfComposingWord && typedWordString.drop(1).none { it.isUpperCase() }
         val indexOfTypedWord = 1 + if (hasAutoCorrection) SuggestedWords.INDEX_OF_AUTO_CORRECTION else SuggestedWords.INDEX_OF_TYPED_WORD
         if (
             (hasAutoCorrection
@@ -340,7 +340,7 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
             BackgroundGatheringCache.addWord(wordData)
         }
 
-        val autocorrectCapitalization = addCapitalizedSuggestion && isCorrectionEnabled && !wordComposer.isCursorFrontOrMiddleOfComposingWord
+        val autocorrectCapitalization = addCapitalizedSuggestion && Settings.getValues().mAutoCorrectCapitalizedSuggestion && isCorrectionEnabled && !wordComposer.isCursorFrontOrMiddleOfComposingWord
         return SuggestedWords(suggestionsList, suggestionResults.mRawSuggestions, pseudoTypedWordInfo, true,
             autocorrectCapitalization, false, inputStyle, sequenceNumber)
     }
@@ -378,10 +378,10 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
         private val sLanguageToMaximumAutoCorrectionWithSpaceLength = hashMapOf(Locale.GERMAN.language to MAXIMUM_AUTO_CORRECT_LENGTH_FOR_GERMAN)
 
         private fun capitalizeAndAddTrailingSingleQuotes(
-            suggestions: ArrayList<SuggestedWordInfo>, capsMode: Int, trailingSingleQuotesCount: Int, defaultLocale: Locale
+            suggestions: ArrayList<SuggestedWordInfo>, capsMode: CapsMode, trailingSingleQuotesCount: Int, defaultLocale: Locale
         ) {
             val suggestionsCount = suggestions.size
-            if (capsMode != WordComposer.CAPS_MODE_OFF || 0 != trailingSingleQuotesCount) {
+            if (capsMode != CapsMode.OFF || 0 != trailingSingleQuotesCount) {
                 for (i in 0 until suggestionsCount) {
                     val wordInfo = suggestions[i]
                     val wordLocale = wordInfo.mSourceDict.mLocale
@@ -394,7 +394,7 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
         }
 
         private fun capitalizeAndAddTrailingSingleQuotes(
-            wordInfo: SuggestedWordInfo, locale: Locale, capsMode: Int, trailingSingleQuotesCount: Int
+            wordInfo: SuggestedWordInfo, locale: Locale, capsMode: CapsMode, trailingSingleQuotesCount: Int
         ): SuggestedWordInfo {
             var capitalizedWord = capitalize(wordInfo.mWord, capsMode, locale)
             // Appending quotes is here to help people quote words. However, it's not helpful
@@ -476,32 +476,32 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
                     || -1 == info.mWord.indexOf(Constants.CODE_SPACE.toChar()))
         }
 
-        /** returns CAPS_MODE_MANUAL_SHIFTED, CAPS_MODE_MANUAL_SHIFT_LOCKED, or CAPS_MODE_OFF */
-        private fun getCapsModeForTyping(wordComposer: WordComposer, keyboard: Keyboard): Int {
-            val capsMode = keyboard.mId.capsMode
-            if (capsMode == WordComposer.CAPS_MODE_MANUAL_SHIFTED || capsMode == WordComposer.CAPS_MODE_MANUAL_SHIFT_LOCKED)
+        /** returns CapsMode.MANUAL, CapsMode.MANUAL_LOCKED, or CAPS_MODE_OFF */
+        private fun getCapsModeForTyping(wordComposer: WordComposer, keyboard: Keyboard): CapsMode {
+            val capsMode = keyboard.mId.element.capsMode
+            if (capsMode == CapsMode.MANUAL || capsMode == CapsMode.MANUAL_LOCKED)
                 return capsMode
             // we have some auto-mode which we ignore
             // instead we determine mode from the typed word (that's how it was done for a long time, todo: maybe adjust if necessary?)
-            if (wordComposer.isAllUpperCase && !wordComposer.isResumed) return WordComposer.CAPS_MODE_MANUAL_SHIFT_LOCKED
-            if (wordComposer.isOrWillBeOnlyFirstCharCapitalized) return WordComposer.CAPS_MODE_MANUAL_SHIFTED
-            return WordComposer.CAPS_MODE_OFF
+            if (wordComposer.isAllUpperCase && !wordComposer.isResumed) return CapsMode.MANUAL_LOCKED
+            if (wordComposer.isOrWillBeOnlyFirstCharCapitalized) return CapsMode.MANUAL
+            return CapsMode.OFF
         }
 
-        /** returns CAPS_MODE_MANUAL_SHIFTED, CAPS_MODE_MANUAL_SHIFT_LOCKED, or CAPS_MODE_OFF */
+        /** returns CapsMode.MANUAL, CapsMode.MANUAL_LOCKED, or CAPS_MODE_OFF */
         // maybe could check the details in differences to getCapsModeForTyping and unify?
-        private fun getCapsModeForGesture(wordComposer: WordComposer, keyboard: Keyboard): Int {
-            val capsMode = keyboard.mId.capsMode
-            if (capsMode == WordComposer.CAPS_MODE_MANUAL_SHIFTED || capsMode == WordComposer.CAPS_MODE_MANUAL_SHIFT_LOCKED)
+        private fun getCapsModeForGesture(wordComposer: WordComposer, keyboard: Keyboard): CapsMode {
+            val capsMode = keyboard.mId.element.capsMode
+            if (capsMode == CapsMode.MANUAL || capsMode == CapsMode.MANUAL_LOCKED)
                 return capsMode
-            if (wordComposer.isAllUpperCase) return WordComposer.CAPS_MODE_MANUAL_SHIFT_LOCKED
-            if (wordComposer.wasShiftedNoLock()) return WordComposer.CAPS_MODE_MANUAL_SHIFTED
-            return WordComposer.CAPS_MODE_OFF
+            if (wordComposer.isAllUpperCase) return CapsMode.MANUAL_LOCKED
+            if (wordComposer.wasShiftedNoLock()) return CapsMode.MANUAL
+            return CapsMode.OFF
         }
 
-        private fun capitalize(word: String, capsMode: Int, locale: Locale) = when (capsMode) {
-            WordComposer.CAPS_MODE_MANUAL_SHIFT_LOCKED -> word.uppercase(locale)
-            WordComposer.CAPS_MODE_MANUAL_SHIFTED -> StringUtils.capitalizeFirstCodePoint(word, locale)
+        private fun capitalize(word: String, capsMode: CapsMode, locale: Locale) = when (capsMode) {
+            CapsMode.MANUAL_LOCKED -> word.uppercase(locale)
+            CapsMode.MANUAL -> StringUtils.capitalizeFirstCodePoint(word, locale)
             else -> word
         }
 

@@ -75,7 +75,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import helium314.keyboard.keyboard.Key
-import helium314.keyboard.keyboard.KeyboardId
+import helium314.keyboard.keyboard.KeyboardElement
 import helium314.keyboard.keyboard.KeyboardLayoutSet
 import helium314.keyboard.keyboard.KeyboardSwitcher
 import helium314.keyboard.keyboard.KeyboardTheme
@@ -190,13 +190,13 @@ class EmojiSearchActivity : ComponentActivity() {
                         val focusRequester = remember { FocusRequester() }
                         var text by remember { mutableStateOf(TextFieldValue(searchText, selection = TextRange(searchText.length))) }
                         val textFieldColors = TextFieldDefaults.colors().copy(
-                            unfocusedContainerColor = Color(colors.get(ColorType.FUNCTIONAL_KEY_BACKGROUND)),
-                            unfocusedTextColor = Color(colors.get(ColorType.FUNCTIONAL_KEY_TEXT)),
-                            cursorColor = Color(colors.get(ColorType.FUNCTIONAL_KEY_TEXT)),
-                            unfocusedLeadingIconColor = Color(colors.get(ColorType.FUNCTIONAL_KEY_TEXT)),
-                            unfocusedTrailingIconColor = Color(colors.get(ColorType.FUNCTIONAL_KEY_TEXT)),
-                            unfocusedPlaceholderColor = lerp(Color(colors.get(ColorType.FUNCTIONAL_KEY_BACKGROUND)),
-                                Color(colors.get(ColorType.FUNCTIONAL_KEY_TEXT)), 0.5f))
+                            unfocusedContainerColor = Color(colors.get(ColorType.EMOJI_SEARCH_BACKGROUND)),
+                            unfocusedTextColor = Color(colors.get(ColorType.EMOJI_SEARCH_TEXT)),
+                            cursorColor = Color(colors.get(ColorType.EMOJI_SEARCH_TEXT)),
+                            unfocusedLeadingIconColor = Color(colors.get(ColorType.EMOJI_SEARCH_TEXT)),
+                            unfocusedTrailingIconColor = Color(colors.get(ColorType.EMOJI_SEARCH_TEXT)),
+                            unfocusedPlaceholderColor = lerp(Color(colors.get(ColorType.EMOJI_SEARCH_BACKGROUND)),
+                                Color(colors.get(ColorType.EMOJI_SEARCH_TEXT)), 0.5f))
                         CompositionLocalProvider(
                             LocalTextSelectionColors provides textFieldColors.textSelectionColors,
                             LocalTextStyle provides LocalTextStyle.current.copy(fontFamily = fontFamily),
@@ -291,9 +291,9 @@ class EmojiSearchActivity : ComponentActivity() {
         val keyboardWidth = ResourceUtils.getKeyboardWidth(this, Settings.getValues())
         val layoutSet = KeyboardLayoutSet.Builder(this, null).setSubtype(RichInputMethodSubtype.emojiSubtype)
             .setKeyboardGeometry(keyboardWidth, EmojiLayoutParams(resources).emojiKeyboardHeight).build()
-        val keyboard = DynamicGridKeyboard.ofRowCount(prefs(), layoutSet.getKeyboard(KeyboardId.ELEMENT_EMOJI_RECENTS),
+        val keyboard = DynamicGridKeyboard.ofRowCount(prefs(), layoutSet.getKeyboard(KeyboardElement.EMOJI_RECENTS),
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 1 else 2,
-            KeyboardId.ELEMENT_EMOJI_CATEGORY16, keyboardWidth)
+            false, keyboardWidth)
         val builder = KeyboardBuilder(this, KeyboardParams())
         builder.load(keyboard.mId)
         keyboardParams = builder.mParams

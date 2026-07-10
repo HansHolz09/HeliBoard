@@ -19,11 +19,6 @@ import helium314.keyboard.keyboard.KeyboardActionListener
 import helium314.keyboard.keyboard.KeyboardLayoutSet
 import helium314.keyboard.keyboard.KeyboardSwitcher
 import helium314.keyboard.keyboard.emoji.SupportedEmojis
-import helium314.keyboard.keyboard.internal.keyboard_parser.POPUP_KEYS_ALL
-import helium314.keyboard.keyboard.internal.keyboard_parser.POPUP_KEYS_MAIN
-import helium314.keyboard.keyboard.internal.keyboard_parser.POPUP_KEYS_MORE
-import helium314.keyboard.keyboard.internal.keyboard_parser.POPUP_KEYS_NORMAL
-import helium314.keyboard.keyboard.internal.keyboard_parser.morePopupKeysResId
 import helium314.keyboard.latin.BuildConfig
 import helium314.keyboard.latin.R
 import helium314.keyboard.latin.SystemBroadcastReceiver
@@ -51,6 +46,7 @@ import helium314.keyboard.settings.preferences.LoadGestureLibPreference
 import helium314.keyboard.settings.preferences.TextInputPreference
 import helium314.keyboard.latin.utils.previewDark
 import androidx.core.content.edit
+import helium314.keyboard.keyboard.internal.keyboard_parser.LocaleKeyboardInfos
 import helium314.keyboard.latin.utils.Log
 import helium314.keyboard.latin.utils.getActivity
 
@@ -216,8 +212,13 @@ fun createAdvancedSettings(context: Context) = listOf(
         }
     },
     Setting(context, Settings.PREF_MORE_POPUP_KEYS, R.string.show_popup_keys_title) {
-        val items = listOf(POPUP_KEYS_NORMAL, POPUP_KEYS_MAIN, POPUP_KEYS_MORE, POPUP_KEYS_ALL).map { setting ->
-            stringResource(morePopupKeysResId(setting)) to setting
+        val items = listOf(
+            LocaleKeyboardInfos.POPUP_KEYS_NORMAL,
+            LocaleKeyboardInfos.POPUP_KEYS_MAIN,
+            LocaleKeyboardInfos.POPUP_KEYS_MORE,
+            LocaleKeyboardInfos.POPUP_KEYS_ALL
+        ).map { setting ->
+            stringResource(LocaleKeyboardInfos.morePopupKeysResId(setting)) to setting
         }
         ListPreference(it, items, Defaults.PREF_MORE_POPUP_KEYS) { KeyboardLayoutSet.onSystemLocaleChanged() }
     },

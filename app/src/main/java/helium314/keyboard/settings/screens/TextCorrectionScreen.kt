@@ -65,6 +65,7 @@ fun TextCorrectionScreen(
         Settings.PREF_AUTO_CORRECTION,
         if (autocorrectEnabled) Settings.PREF_MORE_AUTO_CORRECTION else null,
         if (autocorrectEnabled) Settings.PREF_AUTOCORRECT_SHORTCUTS else null,
+        if (autocorrectEnabled) Settings.PREF_AUTOCORRECT_CAPITALIZED_SUGGESTION else null,
         if (autocorrectEnabled) Settings.PREF_AUTO_CORRECT_CONFIDENCE else null,
         if (autocorrectEnabled) Settings.PREF_BACKSPACE_REVERTS_AUTOCORRECT else null,
         Settings.PREF_AUTO_CAP,
@@ -129,6 +130,11 @@ fun createCorrectionSettings(context: Context) = listOf(
         R.string.auto_correct_shortcuts, R.string.auto_correct_shortcuts_summary
     ) {
         SwitchPreference(it, Defaults.PREF_AUTOCORRECT_SHORTCUTS)
+    },
+    Setting(context, Settings.PREF_AUTOCORRECT_CAPITALIZED_SUGGESTION,
+        R.string.auto_correct_capitalized_suggestions, R.string.auto_correct_capitalized_suggestions_description
+    ) {
+        SwitchPreference(it, Defaults.PREF_AUTOCORRECT_CAPITALIZED_SUGGESTION)
     },
     Setting(context, Settings.PREF_AUTO_CORRECT_CONFIDENCE, R.string.auto_correction_confidence) { setting ->
         SliderPreference(

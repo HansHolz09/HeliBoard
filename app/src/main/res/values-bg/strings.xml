@@ -571,8 +571,14 @@
     <string name="gesture_data_include_shared">Включване на вече подадени данни</string>
     <string name="gesture_data_shared">подаден</string>
     <string name="gesture_data_saving">Запазване… %s%%</string>
-    <string name="gesture_data_first_enable_dialog">Добре дошли в събирането на фонови данни!&lt;br&gt; Искате ли да добавите клавиша &lt;i&gt;%1$s&lt;/i&gt; към лентата с инструменти? Можете да го използвате, за да контролирате събирането на данни, прочетете повече за него, като използвате бутона &lt;i&gt;%2$s&lt;/i&gt;.</string>
+    <string name="gesture_data_first_enable_dialog">Добре дошли в събирането на данни във фонов режим!&lt;br&gt; Искате ли да добавите клавиша &lt;i&gt;%1$s&lt;/i&gt; към лентата с инструменти? Можете да го използвате, за да контролирате събирането на данни, прочетете повече за него, като използвате бутона &lt;i&gt;%2$s&lt;/i&gt;. &lt;br&gt;&lt;br&gt; По подразбиране събирането на данни във фонов режим е деактивирано за всички приложения. Това означава, че нищо няма да се събира, докато не изберете кои приложения да разрешите. Можете да го промените %3$s.</string>
     <string name="gesture_data_add_key">Добавяне на клавиш за лентата с инструменти</string>
     <string name="gesture_data_no_known_dict">Събирането на фонова информация събира само думи, идващи от речници, които са вградени или налични в &lt;a href=%s&gt;хранилището на речници&lt;/a&gt;. В момента нямате активиран такъв речник.</string>
     <string name="gesture_data_swipe_o_scope">Инструмент за визуализиране на данни за жестове: &lt;a href=%s&gt;Swipe-O-Scope&lt;/a&gt;</string>
+    <string name="auto_correct_capitalized_suggestions">Автоматично коригиране на предложения с главни букви</string>
+    <string name="auto_correct_capitalized_suggestions_description">След натискане на Shift за изписване на предложения с главни букви, ще се задейства автоматичното коригиране</string>
+    <string name="prefs_hint_font_scale">Мащаб на шрифта за ключови подсказки</string>
+    <string name="about_community_links">Връзки към общността</string>
+    <string name="about_community_links_description">Теми, редактор на оформление, дискусии, …</string>
+    <string name="subtype_tok">Токи Пона</string>
 </resources>

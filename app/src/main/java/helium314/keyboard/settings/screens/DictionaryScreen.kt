@@ -57,7 +57,7 @@ fun DictionaryScreen(
     val enabledLanguages = SubtypeSettings.getEnabledSubtypes(true).map { it.locale().language }
     val cachedDictFolders = DictionaryInfoUtils.getCacheDirectories(ctx).map { it.name }
     val comparer = compareBy<Locale>({ it.language !in enabledLanguages }, { it.toLanguageTag() !in cachedDictFolders }, { it.displayName })
-    val dictionaryLocales = listOf(Locale(SubtypeLocaleUtils.NO_LANGUAGE)) + getDictionaryLocales(ctx).sortedWith(comparer)
+    val dictionaryLocales = listOf<Locale?>(null) + getDictionaryLocales(ctx).sortedWith(comparer)
     var selectedLocale: Locale? by remember { mutableStateOf(null) }
     var showAddDictDialog by remember { mutableStateOf(false) }
     val dictPicker = dictionaryFilePicker(selectedLocale)
@@ -67,13 +67,13 @@ fun DictionaryScreen(
         filteredItems = { term ->
             if (term.isBlank()) dictionaryLocales
             else dictionaryLocales.filter { loc ->
-                    loc.language != SubtypeLocaleUtils.NO_LANGUAGE
-                            && loc.localizedDisplayName(ctx.resources).replace("(", "")
-                                .splitOnWhitespace().any { it.startsWith(term, true) }
+                    loc != null
+                    && loc.localizedDisplayName(ctx.resources).replace("(", "")
+                        .splitOnWhitespace().any { it.startsWith(term, true) }
                 }
         },
         itemContent = { locale ->
-            if (locale.language == SubtypeLocaleUtils.NO_LANGUAGE) {
+            if (locale == null) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,

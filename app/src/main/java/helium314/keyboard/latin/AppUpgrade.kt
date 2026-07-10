@@ -80,6 +80,11 @@ private object AppUpgrade {
     fun onUpgrade(context: Context) {
         val prefs = context.prefs()
         val oldVersion = prefs.getInt(Settings.PREF_VERSION_CODE, 0)
+        if (oldVersion == 0) {
+            // fresh install -> no need to upgrade, as this does things like keeping old defaults which is on wanted on actual upgrade
+            prefs.edit { putInt(Settings.PREF_VERSION_CODE, BuildConfig.VERSION_CODE) }
+            return
+        }
         // clear extracted dictionaries, in case updated version contains newer ones
         DictionaryInfoUtils.getCacheDirectories(context).forEach {
             for (file in it.listFiles()!!) {

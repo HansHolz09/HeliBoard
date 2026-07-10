@@ -106,7 +106,7 @@ public interface KeyboardActionListener {
      * Send a non-"code input" custom request to the listener.
      * @return true if the request has been consumed, false otherwise.
      */
-    boolean onCustomRequest(int requestCode);
+    boolean onCustomRequest(CustomAction request);
 
     /**
      * Called when the user performs a horizontal or vertical swipe gesture
@@ -124,6 +124,7 @@ public interface KeyboardActionListener {
     KeyboardActionListener EMPTY_LISTENER = new Adapter();
 
     enum SwipeAction { NONE, MOVE_CURSOR, SWITCH_LANGUAGE, TOGGLE_NUMPAD, HIDE_KEYBOARD, TOUCHPAD_MODE }
+    enum CustomAction { SHOW_INPUT_METHOD_PICKER, TOUCHPAD_ON, TOUCHPAD_OFF, PERFORM_HAPTIC }
 
     class Adapter implements KeyboardActionListener {
         @Override
@@ -155,7 +156,7 @@ public interface KeyboardActionListener {
         @Override
         public void onFinishSlidingInput() {}
         @Override
-        public boolean onCustomRequest(int requestCode) {
+        public boolean onCustomRequest(CustomAction request) {
             return false;
         }
         @Override

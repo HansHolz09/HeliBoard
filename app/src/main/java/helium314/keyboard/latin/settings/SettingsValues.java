@@ -22,7 +22,7 @@ import helium314.keyboard.compat.ConfigurationCompatKt;
 import helium314.keyboard.compat.IsLockedCompatKt;
 import helium314.keyboard.keyboard.KeyboardActionListener;
 import helium314.keyboard.keyboard.KeyboardTheme;
-import helium314.keyboard.keyboard.internal.keyboard_parser.LocaleKeyboardInfosKt;
+import helium314.keyboard.keyboard.internal.keyboard_parser.LocaleKeyboardInfos;
 import helium314.keyboard.latin.InputAttributes;
 import helium314.keyboard.latin.PunctuationSuggestions;
 import helium314.keyboard.latin.R;
@@ -138,6 +138,7 @@ public class SettingsValues {
     public final boolean mRemoveRedundantPopups;
     public final String mSpaceBarText;
     public final float mFontSizeMultiplier;
+    public final float mHintFontSizeMultiplier;
     public final float mFontSizeMultiplierEmoji;
     public final boolean mEmojiKeyFit;
     public final PunctuationSuggestions mPunctuationSuggestions;
@@ -157,6 +158,7 @@ public class SettingsValues {
     public final boolean mAutoCorrectionEnabledPerUserSettings;
     public final boolean mAutoCorrectEnabled;
     public final float mAutoCorrectionThreshold;
+    public final boolean mAutoCorrectCapitalizedSuggestion;
     public final boolean mBackspaceRevertsAutocorrect;
     public final int mScoreLimitForAutocorrect;
     public final boolean mAutoCorrectShortcuts;
@@ -228,6 +230,7 @@ public class SettingsValues {
                 ? 0.5f - 0.5f * (float)Math.pow(autoCorrectConfidence, 0.33)
                 : Float.MAX_VALUE;
         mScoreLimitForAutocorrect = (int)((1.14 - 0.2 * Math.pow(autoCorrectConfidence + 0.47, 3.5)) * 900000);
+        mAutoCorrectCapitalizedSuggestion = prefs.getBoolean(Settings.PREF_AUTOCORRECT_CAPITALIZED_SUGGESTION, Defaults.PREF_AUTOCORRECT_CAPITALIZED_SUGGESTION);
         mAutoCorrectShortcuts = prefs.getBoolean(Settings.PREF_AUTOCORRECT_SHORTCUTS, Defaults.PREF_AUTOCORRECT_SHORTCUTS);
         mBackspaceRevertsAutocorrect = prefs.getBoolean(Settings.PREF_BACKSPACE_REVERTS_AUTOCORRECT, Defaults.PREF_BACKSPACE_REVERTS_AUTOCORRECT);
         mBigramPredictionEnabled = prefs.getBoolean(Settings.PREF_BIGRAM_PREDICTIONS, Defaults.PREF_BIGRAM_PREDICTIONS);
@@ -300,7 +303,7 @@ public class SettingsValues {
             mOneHandedModeScale = 1f;
         mSecondaryLocales = SubtypeUtilsKt.getSecondaryLocales(selectedSubtype.getExtraValue());
         mShowMorePopupKeys = SubtypeUtilsKt.getMoreKeys(selectedSubtype, prefs,
-            selectedSubtype.isAsciiCapable() ? Defaults.PREF_MORE_POPUP_KEYS : LocaleKeyboardInfosKt.POPUP_KEYS_NORMAL);
+            selectedSubtype.isAsciiCapable() ? Defaults.PREF_MORE_POPUP_KEYS : LocaleKeyboardInfos.POPUP_KEYS_NORMAL);
         mColors = KeyboardTheme.getColorsForCurrentTheme(context);
 
         mPopupKeyOrder = SubtypeUtilsKt.getPopupKeyOrder(selectedSubtype, prefs);
@@ -327,6 +330,7 @@ public class SettingsValues {
         mRemoveRedundantPopups = prefs.getBoolean(Settings.PREF_REMOVE_REDUNDANT_POPUPS, Defaults.PREF_REMOVE_REDUNDANT_POPUPS);
         mSpaceBarText = prefs.getString(Settings.PREF_SPACE_BAR_TEXT, Defaults.PREF_SPACE_BAR_TEXT);
         mFontSizeMultiplier = prefs.getFloat(Settings.PREF_FONT_SCALE, Defaults.PREF_FONT_SCALE);
+        mHintFontSizeMultiplier = mShowsHints ? prefs.getFloat(Settings.PREF_HINT_FONT_SCALE, Defaults.PREF_HINT_FONT_SCALE) : 1;
         mFontSizeMultiplierEmoji = prefs.getFloat(Settings.PREF_EMOJI_FONT_SCALE, Defaults.PREF_EMOJI_FONT_SCALE);
         mEmojiKeyFit = prefs.getBoolean(Settings.PREF_EMOJI_KEY_FIT, Defaults.PREF_EMOJI_KEY_FIT);
         mPunctuationSuggestions = Settings.readPunctuationSuggestions(context);

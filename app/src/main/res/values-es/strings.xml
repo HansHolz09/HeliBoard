@@ -534,8 +534,14 @@
     <string name="gesture_data_include_shared">Incluir los datos que ya fueron enviados</string>
     <string name="gesture_data_shared">enviado</string>
     <string name="gesture_data_saving">Guardando… %s%%</string>
-    <string name="gesture_data_first_enable_dialog">¡Bienvenido a la recopilación de datos en segundo plano!&lt;br&gt; ¿Deseas añadir la clave &lt;i&gt;%1$s&lt;/i&gt; a la barra de herramientas? Puedes utilizarla para controlar la recopilación de datos; obtén más información al respecto mediante el botón &lt;i&gt;%2$s&lt;/i&gt;. &lt;br&gt;&lt;br&gt; De forma predeterminada, la recopilación en segundo plano está desactivada para todas las aplicaciones. Puedes cambiarlo %3$s.</string>
+    <string name="gesture_data_first_enable_dialog">¡Bienvenido a la recopilación de datos en segundo plano! &lt;br&gt; ¿Desea agregar la tecla &lt;i&gt;%1$s&lt;/i&gt; a la barra de herramientas?. Puedes usarlo para controlar la recopilación de datos, lee más sobre ello usando el botón &lt;i&gt;%2$s&lt;/i&gt;. &lt;br&gt;&lt;br&gt; Por defecto, la recopilación en segundo plano está desactivada para todas las aplicaciones. Esto significa que no se recopilará nada hasta que elijas qué aplicaciones permites. Puedes cambiarlo %3$s.</string>
     <string name="gesture_data_add_key">Agregar tecla a la barra de herramientas</string>
     <string name="gesture_data_no_known_dict">La recopilación en segundo plano solo recoge palabras procedentes de diccionarios integrados o disponibles en el &lt;a href=%s&gt;repositorio de diccionarios&lt;/a&gt;. Actualmente no tienes este diccionario habilitado.</string>
     <string name="gesture_data_swipe_o_scope">Herramienta para visualizar datos de gestos: &lt;a href=%s&gt;Swipe-O-Scope&lt;/a&gt;</string>
+    <string name="about_community_links">Enlaces de la comunidad</string>
+    <string name="about_community_links_description">Temas, editor de diseño, debates,…</string>
+    <string name="auto_correct_capitalized_suggestions">Corrección automática de sugerencias en mayúsculas</string>
+    <string name="auto_correct_capitalized_suggestions_description">Después de presionar shift para poner en mayúscula las sugerencias, se activará la autocorrección</string>
+    <string name="prefs_hint_font_scale">ajustar el tamaño del texto de las atajos visuales</string>
+    <string name="subtype_tok">Toki Pona</string>
 </resources>

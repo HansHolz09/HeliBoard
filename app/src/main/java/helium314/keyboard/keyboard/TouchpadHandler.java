@@ -46,7 +46,7 @@ public class TouchpadHandler {
         stopHapticRunnable();
         mInTouchpadMode = false;
         sTouchpadModeActive = false;
-        mListener.onCustomRequest(Constants.CODE_TOUCHPAD_OFF);
+        mListener.onCustomRequest(KeyboardActionListener.CustomAction.TOUCHPAD_OFF);
         mListener = null;
     }
 
@@ -61,7 +61,7 @@ public class TouchpadHandler {
             mTouchpadLastX = x;
             mTouchpadLastY = y;
             mTouchpadActivationTime = SystemClock.elapsedRealtime();
-            mListener.onCustomRequest(Constants.CODE_TOUCHPAD_ON);
+            mListener.onCustomRequest(KeyboardActionListener.CustomAction.TOUCHPAD_ON);
             SettingsValues sv = Settings.getValues();
             mHandler.postDelayed(mHapticRunnable, sv.mKeyLongpressTimeout);
             return;
@@ -131,7 +131,7 @@ public class TouchpadHandler {
 
     private final Runnable mHapticRunnable = () -> {
         if (!mHasVibrated) {
-            mListener.onCustomRequest(Constants.CODE_PERFORM_HAPTIC);
+            mListener.onCustomRequest(KeyboardActionListener.CustomAction.PERFORM_HAPTIC);
             mHasVibrated = true;
         }
     };

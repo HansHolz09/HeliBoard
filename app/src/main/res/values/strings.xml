@@ -146,6 +146,10 @@
     <string name="auto_correct_shortcuts">Auto-correct shortcuts</string>
     <!-- Description for auto_correct_shortcuts -->
     <string name="auto_correct_shortcuts_summary">When enabled shortcuts might be expanded by autocorrect</string>
+    <!-- Option to enable auto correction for for capitalized suggestions (by pressing shift) -->
+    <string name="auto_correct_capitalized_suggestions">Auto-correct capitalized suggestions</string>
+    <!-- Description for auto_correct_capitalized_suggestions -->
+    <string name="auto_correct_capitalized_suggestions_description">After pressing shift to capitalize suggestions, auto-correct will trigger</string>
     <!-- Option to undo auto correction with backspace -->
     <string name="backspace_reverts_autocorrect">Backspace reverts autocorrect</string>
     <!-- Option to disable auto correction. -->
@@ -405,6 +409,8 @@
     <string name="prefs_side_padding_scale">Side padding scale</string>
     <!-- Title of the setting for adjusting font size on the keyboard -->
     <string name="prefs_font_scale">Keyboard font scale</string>
+    <!-- Title of the setting for adjusting font size of the long-press hints -->
+    <string name="prefs_hint_font_scale">Key hint font scale</string>
     <!-- Title of the setting for adjusting font size in emoji view -->
     <string name="prefs_emoji_font_scale">Emoji view font scale</string>
     <!-- Title of the setting for adjusting emoji key size to fit emoji size in emoji view -->
@@ -444,6 +450,8 @@
     <string name="subtype_dru">Dargwa (Urakhi)</string>
     <!-- Name for Eastern Mari (https://en.wikipedia.org/wiki/Meadow_Mari_language) keyboard subtype -->
     <string name="subtype_mhr">Mari (Eastern)</string>
+    <!-- Name for Toki Pona (https://en.wikipedia.org/wiki/Toki_Pona) keyboard subtype -->
+    <string name="subtype_tok">Toki Pona</string>
     <!-- Description for a generic language / layout combination. %1$s is the language, %2$s is the layout -->
     <string name="subtype_with_layout_generic">%1$s (%2$s)</string>
     <!-- Description for "LANGUAGE_NAME" (Extended) keyboard subtype -->
@@ -785,6 +793,10 @@ New dictionary:
     <string name="about_wiki_link">Go to Wiki</string>
     <!-- description for wiki link -->
     <string name="about_wiki_link_description">The Wiki can be improved by any GitHub user!</string>
+    <!-- links to community stuff -->
+    <string name="about_community_links">Community links</string>
+    <!-- description for about_community_links -->
+    <string name="about_community_links_description">Themes, layout editor, discussions, …</string>
     <!-- preference title for saving the log to a file -->
     <string name="save_log">Save log</string>
     <!-- license for about screen-->
@@ -1273,7 +1285,8 @@ New dictionary:
         Do you wish to add the &lt;i&gt;%1$s&lt;/i&gt; key to the toolbar?
         You can use it to control data gathering, read more about it using the &lt;i&gt;%2$s&lt;/i&gt; button.
         &lt;br&gt;&lt;br&gt;
-        At by default, background collection is disabled for all apps. You can change it %3$s.
+        By default, background collection is disabled for all apps. This means nothing will be collected until you chose which apps you allow.
+        You can change it %3$s.
     </string>
     <!-- Button for adding the background_gathering toolbar key
      string will probably be removed once data gathering is finished (end of 2026 latest) -->

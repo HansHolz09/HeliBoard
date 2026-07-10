@@ -475,7 +475,7 @@
     <string name="gesture_data_delete_dialog_confirm">আপনি কি নিশ্চিত? এটি %sটি শব্দ মুছে ফেলবে। নিশ্চিত করুন যে আপনার শেয়ার করা তথ্য জমা দেওয়া হয়েছে!</string>
     <string name="gesture_data_delete_dialog_submitted">%sটি জমা দেওয়া শব্দ বিলোপ</string>
     <string name="gesture_data_many_not_shared_words">আপনার কাছে জমা দেওয়ার জন্য %s এর বেশি শব্দ অপেক্ষমাণ রয়েছে</string>
-    <string name="gesture_data_email_body">গুরুত্বপূর্ণ:\n\n হ্যালো!\n\n স্মরণ করিয়ে দিচ্ছি, এই তথ্য CC BY-SA 4.0 লাইসেন্সের অধীনে পাবলিকভাবে শেয়ার করা হবে, এবং আপনার গোপনীয়তা রক্ষার জন্য আপনাকে লেখক হিসেবে তালিকাভুক্ত করা হবে না।\n\n আমাদের সাথে আপনার তথ্যের অধিকার শেয়ার করার জন্য ধন্যবাদ। আমরা এটি সঠিকভাবে ব্যবহার করব!\n\n দয়া করে মনে রাখবেন, এই নোটিশের শব্দ পরিবর্তন করা হলে আপনার তথ্যের ব্যবহারের নিয়ম পরিবর্তিত হবে না। এটি একটি পরিবর্তনযোগ্য চুক্তি নয়, এটি কেবল একটি বন্ধুত্বপূর্ণ স্মরণসূচক।\n\n আপনি যদি আপনার তথ্যের সাথে আমাদেরকে কোনো বার্তা পাঠাতে চান, এখানে রেখার নিচে লিখুন।\n\n ---------------------------------------------</string>
+    <string name="gesture_data_email_body">গুরুত্বপূর্ণ:\n\n হ্যালো!\n স্মরণ করিয়ে দিচ্ছি, এই তথ্য CC BY-SA 4.0 লাইসেন্সের অধীনে পাবলিকভাবে শেয়ার করা হবে, এবং আপনার গোপনীয়তা রক্ষার জন্য আপনাকে লেখক হিসেবে তালিকাভুক্ত করা হবে না।\n\n আমাদের সাথে আপনার তথ্যের অধিকার শেয়ার করার জন্য ধন্যবাদ। আমরা এটি সঠিকভাবে ব্যবহার করব!\n\n দয়া করে মনে রাখবেন, এই নোটিশের শব্দ পরিবর্তন করা হলে আপনার তথ্যের ব্যবহারের নিয়ম পরিবর্তিত হবে না। এটি একটি পরিবর্তনযোগ্য চুক্তি নয়, এটি কেবল একটি বন্ধুত্বপূর্ণ স্মরণসূচক।\n আপনি যদি আপনার তথ্যের সাথে আমাদেরকে কোনো বার্তা পাঠাতে চান, এখানে রেখার নিচে লিখুন।\n ---------------------------------------------</string>
     <string name="emoji_search_title">ইমোজি অনুসন্ধান</string>
     <string name="search_field_placeholder">অনুসন্ধান</string>
     <string name="timestamp_description">নিজস্বীকৃত লেআউটে \'timestamp\' key বা key code - 10043 ব্যবহার করে timestamp key সংযুক্ত করা যেতে পারে</string>
@@ -535,8 +535,14 @@
     <string name="gesture_data_include_shared">ইতোমধ্যে জমা দেওয়া তথ্য অন্তর্ভুক্ত</string>
     <string name="gesture_data_shared">জমাকৃত</string>
     <string name="gesture_data_saving">সংরক্ষণ হচ্ছে… %s%%</string>
-    <string name="gesture_data_first_enable_dialog">নেপথ্য তথ্য সংগ্রহে স্বাগতম!&lt;br&gt; আপনি কি টুলবারে &lt;i&gt;%1$s&lt;/i&gt; বোতামটি যোগ করতে চান? এটি তথ্য সংগ্রহ নিয়ন্ত্রণ করতে ব্যবহার করা যাবে, &lt;i&gt;%2$s&lt;/i&gt; বোতাম ব্যবহার করে আরও পড়ুন।</string>
+    <string name="gesture_data_first_enable_dialog">নেপথ্য তথ্য সংগ্রহে স্বাগতম!&lt;br&gt; আপনি কি টুলবারে &lt;i&gt;%1$s&lt;/i&gt; বোতামটি যোগ করতে চান? এর মাধ্যমে আপনি তথ্য সংগ্রহ নিয়ন্ত্রণ করতে পারবেন। &lt;i&gt;%2$s&lt;/i&gt; বোতাম ব্যবহার করে এ সম্পর্কে আরও জানতে পারেন।&lt;br&gt;&lt;br&gt; সব অ্যাপের জন্য ডিফল্টভাবে নেপথ্য তথ্য সংগ্রহ নিষ্ক্রিয় থাকে। অর্থাৎ আপনি কোন অ্যাপকে অনুমতি দেবেন তা নির্বাচন না করা পর্যন্ত কিছুই সংগ্রহ করা হবে না। %3$s থেকে আপনি এটি পরিবর্তন করতে পারেন।</string>
     <string name="gesture_data_add_key">টুলবার বোতাম যোগ করুন</string>
     <string name="gesture_data_no_known_dict">নেপথ্য সংগ্রহ কেবল অন্তর্নির্মিত বা &lt;a href=%s&gt;অভিধান সংগ্রহস্থল&lt;/a&gt;-এ পাওয়া অভিধান থেকে আসা শব্দ সংগ্রহ করে। বর্তমানে আপনার কাছে এমন কোনো অভিধান সক্ষম নেই।</string>
     <string name="gesture_data_swipe_o_scope">অঙ্গুলিহেলন তথ্য দৃশ্যায়নের সরঞ্জাম: &lt;a href=%s&gt;Swipe-O-Scope&lt;/a&gt;</string>
+    <string name="auto_correct_capitalized_suggestions">বড় হাতের পরামর্শের স্বতঃসংশোধন</string>
+    <string name="auto_correct_capitalized_suggestions_description">পরামর্শ বড়ো হাতের করার জন্য শিফট চাপার পরে স্বতঃসংশোধন চালু হবে</string>
+    <string name="prefs_hint_font_scale">বোতামের ইঙ্গিতের স্কেল</string>
+    <string name="about_community_links">সম্প্রদায়ের সংযোগ</string>
+    <string name="about_community_links_description">থিম, লেআউট সম্পাদনা, আলোচনা, …</string>
+    <string name="subtype_tok">টোকি পোনা</string>
 </resources>

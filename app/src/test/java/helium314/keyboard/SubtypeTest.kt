@@ -1,10 +1,9 @@
 package helium314.keyboard
 
-import helium314.keyboard.keyboard.KeyboardId
+import helium314.keyboard.keyboard.KeyboardElement
 import helium314.keyboard.keyboard.KeyboardLayoutSet
 import helium314.keyboard.keyboard.internal.KeyboardParams
-import helium314.keyboard.keyboard.internal.keyboard_parser.POPUP_KEYS_NORMAL
-import helium314.keyboard.keyboard.internal.keyboard_parser.addLocaleKeyTextsToParams
+import helium314.keyboard.keyboard.internal.keyboard_parser.LocaleKeyboardInfos
 import helium314.keyboard.latin.LatinIME
 import helium314.keyboard.latin.common.LocaleUtils.constructLocale
 import helium314.keyboard.latin.settings.Settings
@@ -34,9 +33,9 @@ class SubtypeTest {
     init {
         ShadowLog.setupLogging()
         ShadowLog.stream = System.out
-        params.mId = KeyboardLayoutSet.getFakeKeyboardId(KeyboardId.ELEMENT_ALPHABET)
+        params.mId = KeyboardLayoutSet.getFakeKeyboardId(KeyboardElement.ALPHABET)
         params.mPopupKeyOrder.add(POPUP_KEYS_LAYOUT)
-        addLocaleKeyTextsToParams(latinIME, params, POPUP_KEYS_NORMAL)
+        LocaleKeyboardInfos.addLocaleKeyTextsToParams(latinIME, params, LocaleKeyboardInfos.POPUP_KEYS_NORMAL)
     }
 
     @Test fun emptyAdditionalSubtypesResultsInEmptyList() {

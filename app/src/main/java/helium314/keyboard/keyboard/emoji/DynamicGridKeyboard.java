@@ -51,18 +51,18 @@ final class DynamicGridKeyboard extends Keyboard {
     private List<Key> mCachedGridKeys;
     private final ArrayList<Integer> mEmptyColumnIndices = new ArrayList<>(4);
 
-    public static DynamicGridKeyboard ofKeyCount(final SharedPreferences prefs, final Keyboard templateKeyboard,
-            final int maxKeyCount, final int categoryId, final int width) {
-        return new DynamicGridKeyboard(prefs, templateKeyboard, maxKeyCount, categoryId, width, false);
+    public static DynamicGridKeyboard ofKeyCount(SharedPreferences prefs, Keyboard templateKeyboard,
+            int maxKeyCount, boolean isRecents, int width) {
+        return new DynamicGridKeyboard(prefs, templateKeyboard, maxKeyCount, isRecents, width, false);
     }
 
-    public static DynamicGridKeyboard ofRowCount(final SharedPreferences prefs, final Keyboard templateKeyboard,
-            final int maxRowCount, final int categoryId, final int width) {
-        return new DynamicGridKeyboard(prefs, templateKeyboard, maxRowCount, categoryId, width, true);
+    public static DynamicGridKeyboard ofRowCount(SharedPreferences prefs, Keyboard templateKeyboard,
+            int maxRowCount, boolean isRecents, int width) {
+        return new DynamicGridKeyboard(prefs, templateKeyboard, maxRowCount, isRecents, width, true);
     }
 
-    private DynamicGridKeyboard(final SharedPreferences prefs, final Keyboard templateKeyboard,
-            final int maxCount, final int categoryId, final int width, boolean fixedRowCount) {
+    private DynamicGridKeyboard(SharedPreferences prefs, Keyboard templateKeyboard,
+            int maxCount, boolean isRecents, int width, boolean fixedRowCount) {
         super(templateKeyboard);
         // todo: would be better to keep them final and not require width, but how to properly set width of the template keyboard?
         //  an alternative would be to always create the templateKeyboard with full width
@@ -82,7 +82,7 @@ final class DynamicGridKeyboard extends Keyboard {
             setSpacerColumns(spacerWidth);
         mMaxKeyCount = fixedRowCount? maxCount * getOccupiedColumnCount() : maxCount;
         mFixedRowCount = fixedRowCount;
-        mIsRecents = categoryId == EmojiCategory.ID_RECENTS;
+        mIsRecents = isRecents;
         mPrefs = prefs;
     }
 

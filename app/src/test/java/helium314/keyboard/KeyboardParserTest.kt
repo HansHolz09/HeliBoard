@@ -7,6 +7,7 @@ import com.android.inputmethod.keyboard.ProximityInfo
 import helium314.keyboard.keyboard.Key
 import helium314.keyboard.keyboard.Key.KeyParams
 import helium314.keyboard.keyboard.Keyboard
+import helium314.keyboard.keyboard.KeyboardElement
 import helium314.keyboard.keyboard.KeyboardId
 import helium314.keyboard.keyboard.KeyboardLayoutSet
 import helium314.keyboard.keyboard.internal.KeySpecParser.KeySpecParserError
@@ -16,8 +17,7 @@ import helium314.keyboard.keyboard.internal.PopupKeySpec
 import helium314.keyboard.keyboard.internal.TouchPositionCorrection
 import helium314.keyboard.keyboard.internal.UniqueKeysCache
 import helium314.keyboard.keyboard.internal.keyboard_parser.LayoutParser
-import helium314.keyboard.keyboard.internal.keyboard_parser.POPUP_KEYS_NORMAL
-import helium314.keyboard.keyboard.internal.keyboard_parser.addLocaleKeyTextsToParams
+import helium314.keyboard.keyboard.internal.keyboard_parser.LocaleKeyboardInfos
 import helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyCode
 import helium314.keyboard.latin.LatinIME
 import helium314.keyboard.latin.RichInputMethodSubtype
@@ -50,10 +50,10 @@ class ParserTest {
     init {
         ShadowLog.setupLogging()
         ShadowLog.stream = System.out
-        params.mId = KeyboardLayoutSet.getFakeKeyboardId(KeyboardId.ELEMENT_ALPHABET)
+        params.mId = KeyboardLayoutSet.getFakeKeyboardId(KeyboardElement.ALPHABET)
         params.mPopupKeyOrder.add(POPUP_KEYS_LAYOUT)
         params.mPopupKeyHintOrder.add(POPUP_KEYS_LAYOUT)
-        addLocaleKeyTextsToParams(latinIME, params, POPUP_KEYS_NORMAL)
+        LocaleKeyboardInfos.addLocaleKeyTextsToParams(latinIME, params, LocaleKeyboardInfos.POPUP_KEYS_NORMAL)
     }
 
     @Test fun simpleParser() {
@@ -448,25 +448,25 @@ f""", // no newline at the end
     @Test fun canLoadKeyboard() {
         val editorInfo = EditorInfo()
         val subtype = SubtypeUtilsAdditional.createEmojiCapableAdditionalSubtype(Locale.ENGLISH, "qwerty", true)
-        val (kb, keys) = buildKeyboard(editorInfo, subtype, KeyboardId.ELEMENT_ALPHABET)
+        val (kb, keys) = buildKeyboard(editorInfo, subtype, KeyboardElement.ALPHABET)
         assertEquals(kb.sortedKeys.size, keys.sumOf { it.size })
     }
 
     @Test fun `dvorak has 4 rows`() {
         val editorInfo = EditorInfo()
         val subtype = SubtypeUtilsAdditional.createEmojiCapableAdditionalSubtype(Locale.ENGLISH, "dvorak", true)
-        val (_, keys) = buildKeyboard(editorInfo, subtype, KeyboardId.ELEMENT_ALPHABET)
+        val (_, keys) = buildKeyboard(editorInfo, subtype, KeyboardElement.ALPHABET)
         assertEquals(keys.size, 4)
     }
 
     @Test fun `de_DE has extra keys`() {
         val editorInfo = EditorInfo()
         val subtype = SubtypeUtilsAdditional.createEmojiCapableAdditionalSubtype(Locale.GERMANY, "qwertz+", true)
-        val (_, keys) = buildKeyboard(editorInfo, subtype, KeyboardId.ELEMENT_ALPHABET)
+        val (_, keys) = buildKeyboard(editorInfo, subtype, KeyboardElement.ALPHABET)
         assertEquals(11, keys[0].size)
         assertEquals(11, keys[1].size)
         assertEquals(10, keys[2].size)
-        val (_, keys2) = buildKeyboard(editorInfo, subtype, KeyboardId.ELEMENT_ALPHABET_AUTOMATIC_SHIFTED)
+        val (_, keys2) = buildKeyboard(editorInfo, subtype, KeyboardElement.ALPHABET_AUTOMATIC_SHIFTED)
         assertEquals(11, keys2[0].size)
         assertEquals(11, keys2[1].size)
         assertEquals(10, keys2[2].size)
@@ -475,8 +475,8 @@ f""", // no newline at the end
     @Test fun `popup key count does not depend on shift for (for simple layout)`() {
         val editorInfo = EditorInfo()
         val subtype = SubtypeUtilsAdditional.createEmojiCapableAdditionalSubtype(Locale.ENGLISH, "qwerty", true)
-        val (kb, keys) = buildKeyboard(editorInfo, subtype, KeyboardId.ELEMENT_ALPHABET)
-        val (kb2, keys2) = buildKeyboard(editorInfo, subtype, KeyboardId.ELEMENT_ALPHABET_AUTOMATIC_SHIFTED)
+        val (kb, keys) = buildKeyboard(editorInfo, subtype, KeyboardElement.ALPHABET)
+        val (kb2, keys2) = buildKeyboard(editorInfo, subtype, KeyboardElement.ALPHABET_AUTOMATIC_SHIFTED)
         assertEquals(kb.sortedKeys.size, kb2.sortedKeys.size)
         keys.forEachIndexed { i, kpList -> kpList.forEachIndexed { j, kp ->
             assertEquals(kp.mPopupKeys?.size, keys2[i][j].mPopupKeys?.size)
@@ -558,20 +558,20 @@ f""", // no newline at the end
         }
     }
 
-    private fun buildKeyboard(editorInfo: EditorInfo, subtype: InputMethodSubtype, elementId: Int): Pair<Keyboard, List<List<KeyParams>>> {
+    private fun buildKeyboard(editorInfo: EditorInfo, subtype: InputMethodSubtype, element: KeyboardElement): Pair<Keyboard, List<List<KeyParams>>> {
         val layoutParams = KeyboardLayoutSet.Params()
-        val editorInfoField = KeyboardLayoutSet.Params::class.java.getDeclaredField("mEditorInfo").apply { isAccessible = true }
+        val editorInfoField = KeyboardLayoutSet.Params::class.java.getDeclaredField("editorInfo").apply { isAccessible = true }
         editorInfoField.set(layoutParams, editorInfo)
-        val subtypeField = KeyboardLayoutSet.Params::class.java.getDeclaredField("mSubtype").apply { isAccessible = true }
+        val subtypeField = KeyboardLayoutSet.Params::class.java.getDeclaredField("subtype").apply { isAccessible = true }
         subtypeField.set(layoutParams, RichInputMethodSubtype.get(subtype))
-        val widthField = KeyboardLayoutSet.Params::class.java.getDeclaredField("mKeyboardWidth").apply { isAccessible = true }
+        val widthField = KeyboardLayoutSet.Params::class.java.getDeclaredField("keyboardWidth").apply { isAccessible = true }
         widthField.setInt(layoutParams, 500)
-        val heightField = KeyboardLayoutSet.Params::class.java.getDeclaredField("mKeyboardHeight").apply { isAccessible = true }
+        val heightField = KeyboardLayoutSet.Params::class.java.getDeclaredField("keyboardHeight").apply { isAccessible = true }
         heightField.setInt(layoutParams, 300)
 
         val keysInRowsField = KeyboardBuilder::class.java.getDeclaredField("keysInRows").apply { isAccessible = true }
 
-        val id = KeyboardId(elementId, layoutParams)
+        val id = KeyboardId(element, layoutParams)
         val builder = KeyboardBuilder(latinIME, KeyboardParams(UniqueKeysCache.NO_CACHE))
         builder.load(id)
         @Suppress("UNCHECKED_CAST")

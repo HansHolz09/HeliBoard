@@ -61,6 +61,9 @@ object FloatingKeyboardUtils {
 
     @JvmStatic
     fun readPosition(context: Context, maxX: Int, maxY: Int): Pair<Int, Int> {
+        // got a crash report where max was < 0 -> probably some crap like visibleDisplayFrame size 0
+        val maxX = maxX.coerceAtLeast(0)
+        val maxY = maxY.coerceAtLeast(0)
         val width = context.resources.displayMetrics.widthPixels
         val x = context.prefs().getInt(Settings.PREF_FLOATING_POS_X_PREFIX + width, width / 2)
         val y = context.prefs().getInt(Settings.PREF_FLOATING_POS_Y_PREFIX + width, context.resources.displayMetrics.heightPixels / 2)

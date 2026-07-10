@@ -534,8 +534,14 @@
     <string name="gesture_data_include_shared">Включить уже отправленные данные</string>
     <string name="gesture_data_shared">отправлено</string>
     <string name="gesture_data_saving">Сохранение… %s%%</string>
-    <string name="gesture_data_first_enable_dialog">Добро пожаловать в сбор данных в фоновом режиме!&lt;br&gt; Хотите добавить клавишу &lt;i&gt;%1$s&lt;/i&gt; на панель инструментов? Вы можете использовать её для контроля сбора данных; узнайте больше об этом, нажав кнопку &lt;i&gt;%2$s&lt;/i&gt;. &lt;br&gt;&lt;br&gt; По умолчанию фоновый сбор отключен для всех приложений. Вы можете изменить это %3$s.</string>
+    <string name="gesture_data_first_enable_dialog">Добро пожаловать в сбор данных в фоновом режиме!&lt;br&gt; Хотите добавить клавишу &lt;i&gt;%1$s&lt;/i&gt; на панель инструментов? Вы можете использовать её для контроля сбора данных; узнайте больше об этом, нажав кнопку &lt;i&gt;%2$s&lt;/i&gt;. &lt;br&gt;&lt;br&gt; По умолчанию фоновый сбор отключен для всех приложений. Это означает, что данные не будут собираться до тех пор, пока вы не разрешите доступ определённым приложениям. Вы можете изменить это %3$s.</string>
     <string name="gesture_data_add_key">Добавить клавишу панели инструментов</string>
     <string name="gesture_data_no_known_dict">Фоновый сбор данных собирает только те слова, которые поступают из встроенных словарей или доступны в &lt;a href=%s&gt;репозитории словарей&lt;/a&gt;. В данный момент у вас не включён такой словарь.</string>
     <string name="gesture_data_swipe_o_scope">Инструмент для визуализации данных жестов: &lt;a href=%s&gt;Swipe-O-Scope&lt;/a&gt;</string>
+    <string name="about_community_links">Ссылки на сообщество</string>
+    <string name="auto_correct_capitalized_suggestions">Автоисправление заглавных букв в подсказках</string>
+    <string name="auto_correct_capitalized_suggestions_description">Нажатие Shift меняет регистр подсказки и активирует автоисправление</string>
+    <string name="prefs_hint_font_scale">Масштаб шрифта подсказок клавиш</string>
+    <string name="about_community_links_description">Темы, редактор макета, обсуждения…</string>
+    <string name="subtype_tok">Токи пона</string>
 </resources>

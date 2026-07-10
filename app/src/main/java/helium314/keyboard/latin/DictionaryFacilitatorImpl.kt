@@ -469,9 +469,10 @@ class DictionaryFacilitatorImpl : DictionaryFacilitator {
         return preferred
     }
 
-    override fun unlearnFromUserHistory(word: String, ngramContext: NgramContext, timeStampInSeconds: Long, eventType: Int) {
-        // TODO: Decide whether or not to remove the word on EVENT_BACKSPACE.
-        if (eventType != Constants.EVENT_BACKSPACE) {
+    override fun unlearnFromUserHistory(word: String, ngramContext: NgramContext,
+                    timeStampInSeconds: Long, event: DictionaryFacilitator.UnlearnEvent) {
+        // TODO: Decide whether or not to remove the word on BACKSPACE.
+        if (event != DictionaryFacilitator.UnlearnEvent.BACKSPACE) {
             currentlyPreferredDictionaryGroup.getSubDict(Dictionary.TYPE_USER_HISTORY)?.removeUnigramEntryDynamically(word)
         }
 

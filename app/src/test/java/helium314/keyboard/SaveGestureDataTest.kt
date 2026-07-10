@@ -1,6 +1,7 @@
 package helium314.keyboard
 
 import helium314.keyboard.keyboard.Keyboard
+import helium314.keyboard.keyboard.KeyboardElement
 import helium314.keyboard.keyboard.KeyboardLayoutSet
 import helium314.keyboard.keyboard.internal.KeyboardParams
 import helium314.keyboard.latin.LatinIME
@@ -58,6 +59,6 @@ class SaveGestureDataTest {
     private val kb = Keyboard(KeyboardParams().apply {
         GRID_HEIGHT = 1
         GRID_WIDTH = 1
-        mId = KeyboardLayoutSet.getFakeKeyboardId(0)
+        mId = KeyboardLayoutSet.getFakeKeyboardId(KeyboardElement.ALPHABET)
     })
 }

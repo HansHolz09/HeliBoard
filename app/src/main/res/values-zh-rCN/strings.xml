@@ -534,4 +534,9 @@
     <string name="gesture_data_shared">已提交</string>
     <string name="gesture_data_saving">正在保存… %s%%</string>
     <string name="gesture_data_add_key">添加工具栏键</string>
+    <string name="auto_correct_capitalized_suggestions">自动更正大写建议</string>
+    <string name="auto_correct_capitalized_suggestions_description">按 Shift 键启用大写建议后，自动更正将触发</string>
+    <string name="prefs_hint_font_scale">按键提示字体比例</string>
+    <string name="about_community_links">社区链接</string>
+    <string name="about_community_links_description">主题、布局编辑器、讨论…</string>
 </resources>

@@ -175,7 +175,7 @@
     <string name="button_backup">حفظ</string>
     <string name="button_restore">استرجاع</string>
     <string name="secondary_locale">الكتابة متعددة اللغات</string>
-    <string name="load_gesture_library_button_load">تحميل المكتبة</string>
+    <string name="load_gesture_library_button_load">حمّل المكتبة</string>
     <string name="load_gesture_library_button_delete">احذف المكتبة</string>
     <string name="load_gesture_library">حمّل مكتبة الإيماءة</string>
     <string name="popup_keys_symbols" tools:keep="@string/popup_keys_symbols">الرموز</string>
@@ -239,7 +239,7 @@
     <string name="load_gesture_library_message">ستحتاج إلى مكتبة \'%s\'. قد تتعطل المكتبات غير المتوافقة عند استخدام الكتابة بالإيماءات.
 \n
 \nتحذير: تحميل التعليمات البرمجية الخارجية يمكن أن يشكل خطراً أمنياً. استخدم فقط مكتبة من مصدر تثق به.</string>
-    <string name="checksum_mismatch_message">ملف مكتبة غير معروف. هل أنت متأكد أنك حصلت عليه من مصدر موثوق به وأنه مخصص لـ \'%s\'؟</string>
+    <string name="checksum_mismatch_message">ملف مكتبة مجهولة. أمتأكد أنك حصلت عليه من مصدر موثوق به وأنه مخصص لـ \'%s\'؟</string>
     <string name="show_popup_keys_title">اعرض المزيد من الحروف مع علامات التشكيل في النافذة المنبثقة</string>
     <string name="show_popup_keys_more">أضف المتغيرات المشتركة</string>
     <string name="show_popup_keys_all">أضف جميع المتغيرات المتاحة</string>
@@ -543,8 +543,14 @@
     <string name="gesture_data_include_shared">ضمّن البيانات التي أُرسلت بالفعل</string>
     <string name="gesture_data_shared">أُرسلت</string>
     <string name="gesture_data_saving">يحفظ… %s %%</string>
-    <string name="gesture_data_first_enable_dialog">مرحبًا بك في ميزة جمع البيانات في الخلفية!&lt;br&gt; أترغب في إضافة المفتاح &lt;i&gt;%1$s&lt;/i&gt; إلى شريط الأدوات؟ يمكنك استخدامه للتحكم في عملية جمع البيانات، اقرأ المزيد عنه باستخدام الزر &lt;i&gt;%2$s&lt;/i&gt;. &lt;br&gt;&lt;br&gt; افتراضيًا، تُعطّل ميزة \"جمع البيانات في الخلفية\" لجميع التطبيقات. يمكنك تغيير هذا الإعداد في %3$s.</string>
+    <string name="gesture_data_first_enable_dialog">مرحبًا بك في ميزة جمع البيانات في الخلفية!&lt;br&gt; أترغب في إضافة المفتاح &lt;i&gt;%1$s&lt;/i&gt; إلى شريط الأدوات؟ يمكنك استخدامه للتحكم في عملية جمع البيانات، اقرأ المزيد عنه باستخدام الزر &lt;i&gt;%2$s&lt;/i&gt;. &lt;br&gt;&lt;br&gt; افتراضيًا، تُعطّل ميزة \"جمع البيانات في الخلفية\" لجميع التطبيقات. هذا يعني أنه لن يتم جمع أي بيانات حتى تختار التطبيقات التي تسمح لها بذلك. يمكنك تغيير هذا الإعداد %3$s.</string>
     <string name="gesture_data_add_key">أضف شريط الأدوات</string>
     <string name="gesture_data_no_known_dict">يقتصر جمع المعلومات في الخلفية على الكلمات الواردة من القواميس المدمجة أو المتوفرة في &lt;a href=%s&gt;مستودع القواميس&lt;/a&gt;. ولا يوجد لديك حاليًا أي قاموس من هذا النوع مُفعّل.</string>
     <string name="gesture_data_swipe_o_scope">أداة لتصور بيانات الإيماءات: &lt;a href=%s&gt;Swipe-O-Scope&lt;/a&gt;</string>
+    <string name="auto_correct_capitalized_suggestions">اقتراحات التصحيح التلقائي للأحرف الكبيرة</string>
+    <string name="auto_correct_capitalized_suggestions_description">بعد الضغط على مفتاح «Shift» لتحويل الاقتراحات إلى أحرف كبيرة، ستُفعَّل ميزة التصحيح التلقائي</string>
+    <string name="prefs_hint_font_scale">مقياس خط التلميحات الرئيسية</string>
+    <string name="about_community_links">روابط المجتمع</string>
+    <string name="about_community_links_description">السمات، محرِّر التخطيط، المناقشات، …</string>
+    <string name="subtype_tok">Toki Pona</string>
 </resources>

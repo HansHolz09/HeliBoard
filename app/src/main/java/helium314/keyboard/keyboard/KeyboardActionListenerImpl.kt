@@ -81,7 +81,7 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
 
         val event: Event
         if (settings.current.mLocale.language == "ko") { // todo: this does not appear to be the right place
-            val subtype = keyboardSwitcher.keyboard?.mId?.mSubtype ?: RichInputMethodManager.getInstance().currentSubtype
+            val subtype = keyboardSwitcher.keyboard?.mId?.subtype ?: RichInputMethodManager.getInstance().currentSubtype
             event = HangulEventDecoder.decodeHardwareKeyEvent(subtype, keyEvent) {
                 getHardwareKeyEventDecoder(keyEvent.deviceId).decodeHardwareKey(keyEvent)
             }
@@ -92,7 +92,7 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
         if (event.isHandled) {
             inputLogic.onCodeInput(
                 settings.current, event,
-                keyboardSwitcher.getKeyboardShiftMode(), // TODO: this is not necessarily correct for a hardware keyboard right now
+                keyboardSwitcher.getKeyboardCapsMode(), // TODO: this is not necessarily correct for a hardware keyboard right now
                 keyboardSwitcher.getCurrentKeyboardScript(),
                 latinIME.mHandler
             )
@@ -176,23 +176,20 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
     override fun onFinishSlidingInput() =
         keyboardSwitcher.onFinishSlidingInput(latinIME.currentAutoCapsState, latinIME.currentRecapitalizeState)
 
-    override fun onCustomRequest(requestCode: Int): Boolean {
-        if (requestCode == Constants.CUSTOM_CODE_SHOW_INPUT_METHOD_PICKER) {
-            return latinIME.showInputPickerDialog()
-        }
-        if (requestCode == Constants.CODE_TOUCHPAD_ON) {
+    override fun onCustomRequest(request: KeyboardActionListener.CustomAction) = when (request) {
+        KeyboardActionListener.CustomAction.SHOW_INPUT_METHOD_PICKER -> latinIME.showInputPickerDialog()
+        KeyboardActionListener.CustomAction.TOUCHPAD_ON -> {
             keyboardSwitcher.mainKeyboardView?.alpha = 0.5f
-            return true
+            true
         }
-        if (requestCode == Constants.CODE_TOUCHPAD_OFF) {
-            keyboardSwitcher.mainKeyboardView?.alpha = 1.0f
-            return true
+        KeyboardActionListener.CustomAction.TOUCHPAD_OFF -> {
+            keyboardSwitcher.mainKeyboardView?.alpha = 1f
+            true
         }
-        if (requestCode == Constants.CODE_PERFORM_HAPTIC) {
+        KeyboardActionListener.CustomAction.PERFORM_HAPTIC -> {
             performHapticFeedback(HapticEvent.KEY_LONG_PRESS)
-            return true
+            true
         }
-        return false
     }
 
     override fun onHorizontalSpaceSwipe(steps: Int): Boolean = when (Settings.getValues().mSpaceSwipeHorizontal) {

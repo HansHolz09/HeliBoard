@@ -190,6 +190,7 @@ object LocaleUtils {
             "hi-Latn" -> R.string.subtype_hi_Latn
             "sr-Latn" -> R.string.subtype_sr_Latn
             "mns" -> R.string.subtype_mns
+            "tok" -> R.string.subtype_tok
             "xdq" -> R.string.subtype_xdq
             "dru" -> R.string.subtype_dru
             "st" -> R.string.subtype_st

@@ -69,16 +69,16 @@
     >
         <item name="categoryPageIndicatorBackground">@color/emoji_tab_page_indicator_background_holo</item>
         <item name="iconEmojiRecentsTab">@drawable/ic_emoji_recents</item>
-        <item name="iconEmojiCategory1Tab">@drawable/ic_emoji_smileys_emotion</item>
-        <item name="iconEmojiCategory2Tab">@drawable/ic_emoji_people_body</item>
-        <item name="iconEmojiCategory3Tab">@drawable/ic_emoji_animals_nature</item>
-        <item name="iconEmojiCategory4Tab">@drawable/ic_emoji_food_drink</item>
-        <item name="iconEmojiCategory5Tab">@drawable/ic_emoji_travel_places</item>
-        <item name="iconEmojiCategory6Tab">@drawable/ic_emoji_activities</item>
-        <item name="iconEmojiCategory7Tab">@drawable/ic_emoji_objects</item>
-        <item name="iconEmojiCategory8Tab">@drawable/ic_emoji_symbols</item>
-        <item name="iconEmojiCategory9Tab">@drawable/ic_emoji_flags</item>
-        <item name="iconEmojiCategory10Tab">@drawable/ic_emoji_emoticons</item>
+        <item name="iconEmojiSmileysTab">@drawable/ic_emoji_smileys_emotion</item>
+        <item name="iconEmojiPeopleTab">@drawable/ic_emoji_people_body</item>
+        <item name="iconEmojiNatureTab">@drawable/ic_emoji_animals_nature</item>
+        <item name="iconEmojiFoodTab">@drawable/ic_emoji_food_drink</item>
+        <item name="iconEmojiTravelPlacesTab">@drawable/ic_emoji_travel_places</item>
+        <item name="iconEmojiActivitiesTab">@drawable/ic_emoji_activities</item>
+        <item name="iconEmojiObjectsTab">@drawable/ic_emoji_objects</item>
+        <item name="iconEmojiSymbolsTab">@drawable/ic_emoji_symbols</item>
+        <item name="iconEmojiFlagsTab">@drawable/ic_emoji_flags</item>
+        <item name="iconEmojiEmoticonsTab">@drawable/ic_emoji_emoticons</item>
     </style>
     <style
             name="ClipboardHistoryView.HoloBase"

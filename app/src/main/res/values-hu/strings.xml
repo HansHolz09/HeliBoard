@@ -534,8 +534,14 @@
     <string name="gesture_data_include_shared">Már beküldött adatok belefoglalása</string>
     <string name="gesture_data_shared">beküldve</string>
     <string name="gesture_data_saving">Mentés… %s%%</string>
-    <string name="gesture_data_first_enable_dialog">Üdvözöljük a háttérben történő adatgyűjtésben!&lt;br&gt; Szeretné hozzáadni a(z) &lt;i&gt;%1$s&lt;/i&gt; gombot az eszköztárhoz? Ezzel szabályozhatja az adatgyűjtést, amiről bővebben a(z) &lt;i&gt;%2$s&lt;/i&gt; gomb használatával olvashat.</string>
+    <string name="gesture_data_first_enable_dialog">Üdvözöljük a háttérben történő adatgyűjtésben!&lt;br&gt; Szeretné hozzáadni a(z) &lt;i&gt;%1$s&lt;/i&gt; gombot az eszköztárhoz? Ezzel szabályozhatja az adatgyűjtést, amiről bővebben a(z) &lt;i&gt;%2$s&lt;/i&gt; gomb használatával olvashat. &lt;br&gt;&lt;br&gt; Alapértelmezés szerint a háttérben történő adatgyűjtés minden alkalmazás esetében ki van kapcsolva. Ez azt jelenti, hogy semmilyen adat nem kerül begyűjtésre, amíg ki nem választja az engedélyezett alkalmazásokat. Ezt a %3$s menüben módosíthatja.</string>
     <string name="gesture_data_add_key">Eszköztár-gomb hozzáadása</string>
     <string name="gesture_data_no_known_dict">A háttérben történő adatgyűjtés csak olyan szavakat rögzít, amelyek beépített, vagy a &lt;a href=%s&gt;szótár-tárhelyről&lt;/a&gt; elérhető szótárakból származnak. Jelenleg nincs ilyen szótár engedélyezve.</string>
     <string name="gesture_data_swipe_o_scope">Eszköz az ujjmozdulat-adatok megjelenítéséhez: &lt;a href=%s&gt;Swipe-O-Scope&lt;/a&gt;</string>
+    <string name="auto_correct_capitalized_suggestions">Nagybetűs javaslatok automatikus javítása</string>
+    <string name="auto_correct_capitalized_suggestions_description">A javaslatok Shift gombbal történő nagybetűsítése után az automatikus javítás aktiválódik</string>
+    <string name="prefs_hint_font_scale">Billentyűtippek betűméretének méretezése</string>
+    <string name="about_community_links">Közösségi hivatkozások</string>
+    <string name="about_community_links_description">Témák, elrendezésszerkesztő, beszélgetések, …</string>
+    <string name="subtype_tok">Toki Pona</string>
 </resources>

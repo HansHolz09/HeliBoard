@@ -46,7 +46,7 @@ object BackgroundGatheringCache {
     }
 
     fun addWord(word: WordData) {
-        if (KeyboardSwitcher.getInstance().keyboard.mId.mInternalAction?.code == KeyCode.INLINE_EMOJI_SEARCH_DONE) {
+        if (KeyboardSwitcher.getInstance().keyboard?.mId?.internalAction?.code == KeyCode.INLINE_EMOJI_SEARCH_DONE) {
             if (DEBUG) Log.i(TAG, "inline emoji search, not adding anything")
             return
         }
@@ -210,7 +210,7 @@ class WordData(
     private val height = keyboard.mOccupiedHeight
     private val width = keyboard.mOccupiedWidth
 
-    private val packageName = keyboard.mId.mEditorInfo.packageName
+    private val packageName = keyboard.mId.editorInfo.packageName
     private val pointerData = PointerData.fromPointers(composedData.mInputPointers)
 
     private val timestamp = System.currentTimeMillis()
@@ -246,12 +246,8 @@ class WordData(
         var dictCount = 0
         val dictionariesInUsedSuggestions = LinkedHashMap<Dictionary, Int>().apply { // linked because we need the order (well, not any more...)
             filteredSuggestions.forEach { if (!containsKey(it.mSourceDict)) put(it.mSourceDict, dictCount++) }
-            // we always want a main dictionary
-            if (!activeMode && none { it.key.mDictType == Dictionary.TYPE_MAIN }) {
-                val word = suggestions.firstOrNull { it.mWord == topWord && it.isFromKnownMainDict(context) }
-                    ?: suggestions.firstOrNull { it.mWord.equals(topWord, true) && it.isFromKnownMainDict(context) }
-                word?.let { put(it.mSourceDict, dictCount++) }
-            }
+            // we always want all main known dictionaries
+            suggestions.forEach { if (!containsKey(it.mSourceDict) && it.isFromKnownMainDict(context)) put(it.mSourceDict, dictCount++) }
         }
 
         val data = GestureData(
@@ -324,7 +320,7 @@ class WordData(
             return false
         if (GestureDataGatheringSettings.isForbiddenForDataGathering(packageName, context))
             return false // package ignored (we should never come here for blocked apps, but better be safe)
-        val inputAttributes = InputAttributes(keyboard.mId.mEditorInfo, false, "")
+        val inputAttributes = InputAttributes(keyboard.mId.editorInfo, false, "")
         val isEmailField = InputTypeUtils.isEmailVariation(inputAttributes.mInputType and InputType.TYPE_MASK_VARIATION)
         if (inputAttributes.mIsPasswordField || inputAttributes.mNoLearning || isEmailField)
             return false // background gathering should not even be enabled, but better have this backup
